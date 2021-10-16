@@ -16,23 +16,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DOU-zm-2cB">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5Un-Z0-JrR">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
+                                <subviews>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="qAm-UX-rI9">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DOU-zm-2cB">
+                                        <rect key="frame" x="0.0" y="56" width="414" height="718"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="DOU-zm-2cB" secondAttribute="bottom" id="2g8-vn-s5o"/>
-                            <constraint firstItem="DOU-zm-2cB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Cfm-Rg-bYM"/>
-                            <constraint firstItem="DOU-zm-2cB" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mUn-nc-xzq"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="DOU-zm-2cB" secondAttribute="trailing" id="yXS-aB-9mx"/>
+                            <constraint firstItem="5Un-Z0-JrR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="OUF-5d-1mY"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5Un-Z0-JrR" secondAttribute="trailing" id="XrP-VE-D4y"/>
+                            <constraint firstItem="5Un-Z0-JrR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="nzE-W5-vCw"/>
+                            <constraint firstItem="5Un-Z0-JrR" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="whT-P4-Bod"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="Vr2-8n-VlT"/>
                     <connections>
                         <outlet property="listView" destination="DOU-zm-2cB" id="VjI-cR-7h2"/>
+                        <outlet property="searchBar" destination="qAm-UX-rI9" id="OyL-gz-0ow"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

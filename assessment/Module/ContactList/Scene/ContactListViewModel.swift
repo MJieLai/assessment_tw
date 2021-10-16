@@ -13,6 +13,7 @@ class ContactListViewModel : NSObject {
     private var dataService : DataService!
     
     var contactListData : [Contact] = []
+    var filteredContactList : [Contact] = []
     
     //MARK: - Initialisation
     override init() {

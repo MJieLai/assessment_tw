@@ -10,6 +10,7 @@ import UIKit
 class ContactListViewController: UIViewController {
     
     //MARK: - Outlets
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var listView: UITableView!
     
     //MARK: - Variables
@@ -17,7 +18,7 @@ class ContactListViewController: UIViewController {
     private var dataSource: ContactListTableViewDataSource<ContactListTableViewCell, Contact>!
     
     var activityView: UIActivityIndicatorView?
-    
+    var isSearchBarShown: Bool = false
     let refreshControl = UIRefreshControl()
 
     //MARK: - Lifecycle
@@ -43,6 +44,9 @@ class ContactListViewController: UIViewController {
     }
     
     func setupView() {
+        searchBar.isHidden = true
+        searchBar.delegate = self
+        
         let nib = UINib(nibName: "ContactListTableViewCell", bundle: Bundle.main)
         listView.register(nib, forCellReuseIdentifier: "ContactListTableViewCell")
         listView.tableFooterView = UIView(frame: .zero)
@@ -70,7 +74,11 @@ class ContactListViewController: UIViewController {
     }
     
     func updateDataSource(){
-        self.dataSource = ContactListTableViewDataSource(cellIdentifier: "ContactListTableViewCell", items: self.contactListViewModel.contactListData, configureCell: { (cell, evm) in
+        let data = ((self.contactListViewModel.filteredContactList.count == 0) && !isSearchBarShown) ?
+            self.contactListViewModel.contactListData :
+            self.contactListViewModel.filteredContactList
+        
+        self.dataSource = ContactListTableViewDataSource(cellIdentifier: "ContactListTableViewCell", items: data, configureCell: { (cell, evm) in
             cell.contactNameLabel.text = "\(evm.firstName ?? "") \(evm.lastName ?? "")"
         })
         
@@ -81,7 +89,7 @@ class ContactListViewController: UIViewController {
         }
     }
 
-    //MARK:- Actions 
+    //MARK:- Actions
     @objc func refresh(_ sender: AnyObject) {
         self.contactListViewModel.getContactListData()
         
@@ -92,7 +100,10 @@ class ContactListViewController: UIViewController {
     }
     
     @objc func searchAction(sender: UIButton!) {
-        
+        isSearchBarShown = !isSearchBarShown
+        searchBar.isHidden = !isSearchBarShown
+
+        searchBar.endEditing(isSearchBarShown)
     }
     
     @objc func addAction(sender: UIButton!) {
@@ -130,5 +141,17 @@ extension ContactListViewController: UITableViewDelegate {
         contactDetailViewController.contactData = self.contactListViewModel.contactListData[indexPath.row]
         contactDetailViewController.delegate = self
         self.navigationController?.pushViewController(contactDetailViewController, animated: true)
+    }
+}
+
+extension ContactListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+        let data = self.contactListViewModel.contactListData
+        let filterdata = searchText.isEmpty ? data : data.filter { ($0.firstName?.contains(searchText) == true) || ($0.lastName?.contains(searchText) == true) }
+
+        self.contactListViewModel.filteredContactList = filterdata
+
+        self.updateDataSource()
     }
 }
