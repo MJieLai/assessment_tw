@@ -26,7 +26,7 @@ class ContactListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Contacts"
+        setupNavigationBar()
         callToViewModelForUIUpdate()
         
         let nib = UINib(nibName: "ContactListTableViewCell", bundle: Bundle.main)
@@ -48,6 +48,18 @@ class ContactListViewController: UIViewController {
             self.updateDataSource()
             self.refreshControl.endRefreshing()
         }
+    }
+    
+    func setupNavigationBar() {
+        self.title = "Contacts"
+
+        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchAction))
+        navigationItem.leftBarButtonItem = searchButton
+        navigationItem.leftBarButtonItem?.tintColor = UIColor(rgb: 0xff8c00)
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addAction))
+        navigationItem.rightBarButtonItem = addButton
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(rgb: 0xff8c00)
     }
     
     //MARK: - View Model
@@ -75,18 +87,14 @@ class ContactListViewController: UIViewController {
             self.listView.reloadData()
         }
     }
+
+    //MARK:- Button Method
+    @objc func searchAction(sender: UIButton!) {
+        
+    }
     
-    func displayNoDataAlert() {
-        DispatchQueue.main.async {
-            self.hideActivityIndicator()
-            let alert = UIAlertController(title: "Error", message: self.contactListViewModel.apiError, preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {_ in
-                self.navigationController?.popViewController(animated: true)
-            }))
-            self.present(alert, animated: true, completion: nil)
-            
-            self.navigationController?.popViewController(animated: true)
-        }
+    @objc func addAction(sender: UIButton!) {
+        
     }
     
     //MARK: - Helper

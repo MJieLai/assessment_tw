@@ -22,6 +22,7 @@
 		FAD464B7271A73820011C980 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = FAD464B6271A73820011C980 /* data.json */; };
 		FAD464BE271A7D8F0011C980 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD464BD271A7D8F0011C980 /* ContactDetailViewController.swift */; };
 		FAD464C2271A7D990011C980 /* ContactDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD464C1271A7D990011C980 /* ContactDetailViewModel.swift */; };
+		FAD464C6271A91870011C980 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD464C5271A91870011C980 /* UIColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		FAD464B6271A73820011C980 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
 		FAD464BD271A7D8F0011C980 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
 		FAD464C1271A7D990011C980 /* ContactDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewModel.swift; sourceTree = "<group>"; };
+		FAD464C5271A91870011C980 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 		FAD4647A271A6A5B0011C980 /* assessment */ = {
 			isa = PBXGroup;
 			children = (
+				FAD464C4271A91710011C980 /* Helper */,
 				FAD46491271A6AA60011C980 /* Service */,
 				FAD46495271A6ABA0011C980 /* Model */,
 				FAD46496271A6AC10011C980 /* Module */,
@@ -174,6 +177,14 @@
 			path = Scene;
 			sourceTree = "<group>";
 		};
+		FAD464C4271A91710011C980 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				FAD464C5271A91870011C980 /* UIColorExtension.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -254,6 +265,7 @@
 				FAD4647C271A6A5B0011C980 /* AppDelegate.swift in Sources */,
 				FAD46493271A6AB40011C980 /* DataService.swift in Sources */,
 				FAD464AF271A71250011C980 /* ContactListTableViewDataSource.swift in Sources */,
+				FAD464C6271A91870011C980 /* UIColorExtension.swift in Sources */,
 				FAD464C2271A7D990011C980 /* ContactDetailViewModel.swift in Sources */,
 				FAD4647E271A6A5B0011C980 /* SceneDelegate.swift in Sources */,
 			);

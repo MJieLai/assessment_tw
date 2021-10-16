@@ -48,8 +48,6 @@ class ContactDetailViewController: UIViewController {
         setupContactData()
     }
     
-    
-    
     //MARK: - View set up
     func setupContactData() {
         firstNameTextfield.text = contactData.firstName
@@ -66,9 +64,11 @@ class ContactDetailViewController: UIViewController {
         let cancelBtn = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelAction))
         self.navigationItem.leftItemsSupplementBackButton = true
         self.navigationItem.leftBarButtonItem = cancelBtn
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor(rgb: 0xff8c00)
         
         let saveBtn = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveAction))
         self.navigationItem.rightBarButtonItem = saveBtn
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor(rgb: 0xff8c00)
     }
     
     func setupUI() {
