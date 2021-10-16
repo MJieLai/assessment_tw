@@ -107,7 +107,9 @@ class ContactListViewController: UIViewController {
     }
     
     @objc func addAction(sender: UIButton!) {
-        
+        let contactDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "ContactDetailViewController") as! ContactDetailViewController
+        contactDetailViewController.delegate = self
+        self.navigationController?.pushViewController(contactDetailViewController, animated: true)
     }
     
     //MARK: - Helper
@@ -131,6 +133,11 @@ extension ContactListViewController: UpdateContactDelegate {
             self.contactListViewModel.contactListData.remove(at: index)
             self.contactListViewModel.contactListData.insert(contact, at: index)
         }
+        self.updateDataSource()
+    }
+    
+    func createContact(contact: Contact) {
+        self.contactListViewModel.contactListData.insert(contact, at: 0)
         self.updateDataSource()
     }
 }

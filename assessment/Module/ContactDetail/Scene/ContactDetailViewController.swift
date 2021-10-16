@@ -9,6 +9,7 @@ import UIKit
 
 protocol UpdateContactDelegate: class {
     func updateContact(contact: Contact)
+    func createContact(contact: Contact)
 }
 
 class ContactDetailViewController: UIViewController {
@@ -92,10 +93,12 @@ class ContactDetailViewController: UIViewController {
         emailLabel.font = UIFont.systemFont(ofSize: 14)
         emailLabel.text = "Email"
         emailTextfield.delegate = self
+        emailTextfield.keyboardType = .emailAddress
         
         phoneLabel.font = UIFont.systemFont(ofSize: 14)
         phoneLabel.text = "Phone"
         phoneTextfield.delegate = self
+        phoneTextfield.keyboardType = .phonePad
     }
     
     //MARK:- Button Method
@@ -113,8 +116,15 @@ class ContactDetailViewController: UIViewController {
             return
         }
         
-        let contactUpdated = Contact(id: contactData.id!, firstName: firstNameTextfield.text!, lastName: lastNameTextfield.text!, email: emailTextfield.text ?? "", phone: phoneTextfield.text ?? "")
-        self.delegate.updateContact(contact: contactUpdated)
+        if contactData.id != "" {
+            let contactUpdated = Contact(id: contactData.id!, firstName: firstNameTextfield.text!, lastName: lastNameTextfield.text!, email: emailTextfield.text ?? "", phone: phoneTextfield.text ?? "")
+            self.delegate.updateContact(contact: contactUpdated)
+        }
+        else {
+            let randomInt = Int.random(in: 0..<6)
+            let contactUpdated = Contact(id: "\(randomInt)", firstName: firstNameTextfield.text!, lastName: lastNameTextfield.text!, email: emailTextfield.text ?? "", phone: phoneTextfield.text ?? "")
+            self.delegate.createContact(contact: contactUpdated)
+        }
         self.navigationController?.popViewController(animated: true)
     }
 }
