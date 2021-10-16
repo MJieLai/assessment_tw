@@ -19,6 +19,8 @@ class ContactListViewController: UIViewController {
     public var searchText: String = ""
     
     var activityView: UIActivityIndicatorView?
+    
+    let refreshControl = UIRefreshControl()
 
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -32,6 +34,20 @@ class ContactListViewController: UIViewController {
         listView.tableFooterView = UIView(frame: .zero)
         listView.rowHeight = 80
         listView.delegate = self
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+
+        listView.addSubview(refreshControl)
+    }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        self.contactListViewModel.callFuncToGetData()
+        
+        DispatchQueue.main.async {
+            self.updateDataSource()
+            self.refreshControl.endRefreshing()
+        }
     }
     
     //MARK: - View Model
@@ -43,17 +59,9 @@ class ContactListViewController: UIViewController {
         self.contactListViewModel.callFuncToGetData()
         
         //* Display data
-//        self.contactListViewModel.bindContactListViewModelToController = {
-//            if self.contactListViewModel.contactListData.count > 0 {
         DispatchQueue.main.async {
-                self.updateDataSource()
+            self.updateDataSource()
         }
-//            }
-//            else {
-//                self.displayNoDataAlert()
-//            }
-            
-//        }
     }
     
     func updateDataSource(){
@@ -96,10 +104,21 @@ class ContactListViewController: UIViewController {
     }
 }
 
+extension ContactListViewController: UpdateContactDelegate {
+    func updateContact(contact: ContactList) {
+        if let index = self.contactListViewModel.contactListData.firstIndex(where: {$0.id == contact.id}) {
+            self.contactListViewModel.contactListData.remove(at: index)
+            self.contactListViewModel.contactListData.insert(contact, at: index)
+        }
+        self.updateDataSource()
+    }
+}
+
 extension ContactListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let contactDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "ContactDetailViewController") as! ContactDetailViewController
         contactDetailViewController.contactData = self.contactListViewModel.contactListData[indexPath.row]
+        contactDetailViewController.delegate = self
         self.navigationController?.pushViewController(contactDetailViewController, animated: true)
     }
 }

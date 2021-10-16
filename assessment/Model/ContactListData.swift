@@ -22,7 +22,3 @@ struct ContactList: Decodable {
         self.phone = phone
     }
 }
-
-//struct ResponseData: Decodable {
-//    var contactList: [ContactList]
-//}
