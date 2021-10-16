@@ -12,8 +12,7 @@ class ContactListViewModel : NSObject {
     
     private var dataService : DataService!
     
-    var contactListData : [ContactList] = []
-    var apiError: String = "No data found"
+    var contactListData : [Contact] = []
     
     //MARK: - Initialisation
     override init() {
@@ -22,7 +21,7 @@ class ContactListViewModel : NSObject {
     }
     
     //MARK: - API functions
-    func callFuncToGetData() {
+    func getContactListData() {
         self.contactListData = self.dataService.getContactListData() ?? []
     }
 }

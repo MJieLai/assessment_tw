@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ContactList: Decodable {
+struct Contact: Decodable {
     var id: String?
     var firstName: String?
     var lastName: String?

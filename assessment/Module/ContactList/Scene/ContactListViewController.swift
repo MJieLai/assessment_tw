@@ -14,9 +14,7 @@ class ContactListViewController: UIViewController {
     
     //MARK: - Variables
     private var contactListViewModel : ContactListViewModel!
-    private var dataSource: ContactListTableViewDataSource<ContactListTableViewCell, ContactList>!
-    
-    public var searchText: String = ""
+    private var dataSource: ContactListTableViewDataSource<ContactListTableViewCell, Contact>!
     
     var activityView: UIActivityIndicatorView?
     
@@ -27,29 +25,11 @@ class ContactListViewController: UIViewController {
         super.viewDidLoad()
         
         setupNavigationBar()
+        setupView()
         callToViewModelForUIUpdate()
-        
-        let nib = UINib(nibName: "ContactListTableViewCell", bundle: Bundle.main)
-        listView.register(nib, forCellReuseIdentifier: "ContactListTableViewCell")
-        listView.tableFooterView = UIView(frame: .zero)
-        listView.rowHeight = 80
-        listView.delegate = self
-        
-        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
-
-        listView.addSubview(refreshControl)
     }
     
-    @objc func refresh(_ sender: AnyObject) {
-        self.contactListViewModel.callFuncToGetData()
-        
-        DispatchQueue.main.async {
-            self.updateDataSource()
-            self.refreshControl.endRefreshing()
-        }
-    }
-    
+    //MARK: - View Set up
     func setupNavigationBar() {
         self.title = "Contacts"
 
@@ -62,13 +42,26 @@ class ContactListViewController: UIViewController {
         navigationItem.rightBarButtonItem?.tintColor = UIColor(rgb: 0xff8c00)
     }
     
+    func setupView() {
+        let nib = UINib(nibName: "ContactListTableViewCell", bundle: Bundle.main)
+        listView.register(nib, forCellReuseIdentifier: "ContactListTableViewCell")
+        listView.tableFooterView = UIView(frame: .zero)
+        listView.rowHeight = 80
+        listView.delegate = self
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+
+        listView.addSubview(refreshControl)
+    }
+
     //MARK: - View Model
     func callToViewModelForUIUpdate(){
         self.contactListViewModel = ContactListViewModel()
         
         //* Call APi
         self.showActivityIndicator()
-        self.contactListViewModel.callFuncToGetData()
+        self.contactListViewModel.getContactListData()
         
         //* Display data
         DispatchQueue.main.async {
@@ -88,7 +81,16 @@ class ContactListViewController: UIViewController {
         }
     }
 
-    //MARK:- Button Method
+    //MARK:- Actions 
+    @objc func refresh(_ sender: AnyObject) {
+        self.contactListViewModel.getContactListData()
+        
+        DispatchQueue.main.async {
+            self.updateDataSource()
+            self.refreshControl.endRefreshing()
+        }
+    }
+    
     @objc func searchAction(sender: UIButton!) {
         
     }
@@ -113,7 +115,7 @@ class ContactListViewController: UIViewController {
 }
 
 extension ContactListViewController: UpdateContactDelegate {
-    func updateContact(contact: ContactList) {
+    func updateContact(contact: Contact) {
         if let index = self.contactListViewModel.contactListData.firstIndex(where: {$0.id == contact.id}) {
             self.contactListViewModel.contactListData.remove(at: index)
             self.contactListViewModel.contactListData.insert(contact, at: index)

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol UpdateContactDelegate: class {
-    func updateContact(contact: ContactList)
+    func updateContact(contact: Contact)
 }
 
 class ContactDetailViewController: UIViewController {
@@ -35,7 +35,7 @@ class ContactDetailViewController: UIViewController {
     @IBOutlet weak var phoneTextfield: UITextField!
     
     //MARK: Variable
-    public var contactData: ContactList = ContactList(id: "", firstName: "", lastName: "", email: "", phone: "")
+    public var contactData: Contact = Contact(id: "", firstName: "", lastName: "", email: "", phone: "")
     
     weak var delegate: UpdateContactDelegate!
     
@@ -104,6 +104,7 @@ class ContactDetailViewController: UIViewController {
     }
 
     @objc func saveAction(sender: UIButton!) {
+        //* Check the mandatory fields
         if firstNameTextfield.text == "" || lastNameTextfield.text == "" {
             let alert = UIAlertController(title: "Save Error", message: "Please fill up First Name and Last Name in order to proceed saving.", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -112,7 +113,7 @@ class ContactDetailViewController: UIViewController {
             return
         }
         
-        let contactUpdated = ContactList(id: contactData.id!, firstName: firstNameTextfield.text!, lastName: lastNameTextfield.text!, email: emailTextfield.text ?? "", phone: phoneTextfield.text ?? "")
+        let contactUpdated = Contact(id: contactData.id!, firstName: firstNameTextfield.text!, lastName: lastNameTextfield.text!, email: emailTextfield.text ?? "", phone: phoneTextfield.text ?? "")
         self.delegate.updateContact(contact: contactUpdated)
         self.navigationController?.popViewController(animated: true)
     }

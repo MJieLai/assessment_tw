@@ -11,12 +11,12 @@ import UIKit
 class DataService :  NSObject {
         
     //Mark: - Get data from json file
-    func getContactListData() -> [ContactList]? {
+    func getContactListData() -> [Contact]? {
         if let url = Bundle.main.url(forResource: "data", withExtension: "json") {
             do {
                 let data = try Data(contentsOf: url)
                 let decoder = JSONDecoder()
-                let jsonData = try decoder.decode([ContactList].self, from: data)
+                let jsonData = try decoder.decode([Contact].self, from: data)
                 return jsonData
             } catch {
                 print("error:\(error)")
