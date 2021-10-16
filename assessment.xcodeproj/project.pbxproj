@@ -13,7 +13,7 @@
 		FAD46483271A6A5B0011C980 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD46481271A6A5B0011C980 /* Main.storyboard */; };
 		FAD46485271A6A5E0011C980 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAD46484271A6A5E0011C980 /* Assets.xcassets */; };
 		FAD46488271A6A5E0011C980 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD46486271A6A5E0011C980 /* LaunchScreen.storyboard */; };
-		FAD46493271A6AB40011C980 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46492271A6AB40011C980 /* APIService.swift */; };
+		FAD46493271A6AB40011C980 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD46492271A6AB40011C980 /* DataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		FAD46484271A6A5E0011C980 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAD46487271A6A5E0011C980 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAD46489271A6A5E0011C980 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FAD46492271A6AB40011C980 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		FAD46492271A6AB40011C980 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +69,7 @@
 		FAD46491271A6AA60011C980 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				FAD46492271A6AB40011C980 /* APIService.swift */,
+				FAD46492271A6AB40011C980 /* DataService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -174,7 +174,7 @@
 			files = (
 				FAD46480271A6A5B0011C980 /* ViewController.swift in Sources */,
 				FAD4647C271A6A5B0011C980 /* AppDelegate.swift in Sources */,
-				FAD46493271A6AB40011C980 /* APIService.swift in Sources */,
+				FAD46493271A6AB40011C980 /* DataService.swift in Sources */,
 				FAD4647E271A6A5B0011C980 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

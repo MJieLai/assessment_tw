@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import UIKit
+
+class DataService :  NSObject {
+        
+    //Mark: - Get data from json file
+    
+}
