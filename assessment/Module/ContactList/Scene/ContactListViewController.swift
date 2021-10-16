@@ -31,6 +31,7 @@ class ContactListViewController: UIViewController {
         listView.register(nib, forCellReuseIdentifier: "ContactListTableViewCell")
         listView.tableFooterView = UIView(frame: .zero)
         listView.rowHeight = 80
+        listView.delegate = self
     }
     
     //MARK: - View Model
@@ -44,7 +45,9 @@ class ContactListViewController: UIViewController {
         //* Display data
 //        self.contactListViewModel.bindContactListViewModelToController = {
 //            if self.contactListViewModel.contactListData.count > 0 {
+        DispatchQueue.main.async {
                 self.updateDataSource()
+        }
 //            }
 //            else {
 //                self.displayNoDataAlert()
@@ -90,5 +93,13 @@ class ContactListViewController: UIViewController {
         if (activityView != nil){
             activityView?.stopAnimating()
         }
+    }
+}
+
+extension ContactListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let contactDetailViewController = self.storyboard?.instantiateViewController(withIdentifier: "ContactDetailViewController") as! ContactDetailViewController
+        contactDetailViewController.contactData = self.contactListViewModel.contactListData[indexPath.row]
+        self.navigationController?.pushViewController(contactDetailViewController, animated: true)
     }
 }

@@ -20,6 +20,8 @@
 		FAD464AF271A71250011C980 /* ContactListTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD464AE271A71250011C980 /* ContactListTableViewDataSource.swift */; };
 		FAD464B2271A71C90011C980 /* ContactListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD464B1271A71C90011C980 /* ContactListData.swift */; };
 		FAD464B7271A73820011C980 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = FAD464B6271A73820011C980 /* data.json */; };
+		FAD464BE271A7D8F0011C980 /* ContactDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD464BD271A7D8F0011C980 /* ContactDetailViewController.swift */; };
+		FAD464C2271A7D990011C980 /* ContactDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD464C1271A7D990011C980 /* ContactDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		FAD464AE271A71250011C980 /* ContactListTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListTableViewDataSource.swift; sourceTree = "<group>"; };
 		FAD464B1271A71C90011C980 /* ContactListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactListData.swift; sourceTree = "<group>"; };
 		FAD464B6271A73820011C980 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		FAD464BD271A7D8F0011C980 /* ContactDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewController.swift; sourceTree = "<group>"; };
+		FAD464C1271A7D990011C980 /* ContactDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,7 @@
 		FAD4649B271A6F900011C980 /* ContactDetail */ = {
 			isa = PBXGroup;
 			children = (
+				FAD464BC271A7D800011C980 /* Scene */,
 			);
 			path = ContactDetail;
 			sourceTree = "<group>";
@@ -158,6 +163,15 @@
 				FAD464B6271A73820011C980 /* data.json */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		FAD464BC271A7D800011C980 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				FAD464BD271A7D8F0011C980 /* ContactDetailViewController.swift */,
+				FAD464C1271A7D990011C980 /* ContactDetailViewModel.swift */,
+			);
+			path = Scene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,9 +250,11 @@
 				FAD46480271A6A5B0011C980 /* ContactListViewController.swift in Sources */,
 				FAD464B2271A71C90011C980 /* ContactListData.swift in Sources */,
 				FAD464A9271A704A0011C980 /* ContactListTableViewCell.swift in Sources */,
+				FAD464BE271A7D8F0011C980 /* ContactDetailViewController.swift in Sources */,
 				FAD4647C271A6A5B0011C980 /* AppDelegate.swift in Sources */,
 				FAD46493271A6AB40011C980 /* DataService.swift in Sources */,
 				FAD464AF271A71250011C980 /* ContactListTableViewDataSource.swift in Sources */,
+				FAD464C2271A7D990011C980 /* ContactDetailViewModel.swift in Sources */,
 				FAD4647E271A6A5B0011C980 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
